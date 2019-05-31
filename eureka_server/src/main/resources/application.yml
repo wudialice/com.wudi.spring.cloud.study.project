@@ -1,0 +1,16 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+  #开启自我保护（默认为true）,在eureka-client-service因为网络问题而导致上报信息到eureka服务失败，eureka服务默认拿到自己维护的一份client-service列表里的数据给到其他调用者
+  #不开启自我保护，则在服务提供者与eureka注册中心连接失败时，eureka注册中心会直接将这个服务提供者剔除
+  server:
+    enable-self-preservation: true
