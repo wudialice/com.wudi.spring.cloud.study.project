@@ -3,9 +3,12 @@ package com.wudi.order_service;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+//使用Feign负载策略
+@EnableFeignClients
 @SpringBootApplication
 public class OrderServiceApplication {
 

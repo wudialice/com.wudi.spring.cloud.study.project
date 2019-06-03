@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
-@Service
+@Service(value = "productOrderService")
 public class ProductOrderServiceImpl implements ProductOrderService {
    @Autowired
     private RestTemplate restTemplate;
