@@ -38,7 +38,7 @@ public class ProductController {
     @RequestMapping("/find")
     public Object findById(@RequestParam("id") int id){
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
