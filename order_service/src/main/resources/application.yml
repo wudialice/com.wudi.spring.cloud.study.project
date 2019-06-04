@@ -27,8 +27,25 @@ feign:
   client:
     config:
       default:
-        connectTimeout: 2000
-        readTimeout: 2000
-  #默认是不开启
+        connectTimeout: 4000
+        readTimeout: 4000
+  #Feign默认是不开启Hystrix降级(feign里面自动引入了hystrix)
   hystrix:
     enabled: true
+
+#hystrix超时禁用
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: false
+
+#超时配置4秒，hystrix默认超时是1秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
