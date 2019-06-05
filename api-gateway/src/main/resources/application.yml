@@ -1,0 +1,23 @@
+server:
+  port: 9000
+
+#服务的名称
+spring:
+  application:
+    name: api-gateway
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+#zuul配置参考 ZuulProperties.java
+#/order-service/api/v1/order/saveF?user_id=1&product_id=1
+#自定义路由映射 这个地址映射到/apigateway
+zuul:
+  routes:
+    order-service: /apigateway/order/**
+    product-service: /apigateway/product/**
+  #统一为上面配置入入口，其他入口忽略
+  ignored-patterns: /*-service/**
+  #敏感的头部信息配置，为空则头部所有信息都可以传递
+  sensitive-headers:
