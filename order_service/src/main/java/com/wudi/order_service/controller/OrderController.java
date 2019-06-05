@@ -49,6 +49,12 @@ public class OrderController {
                                                                           @RequestParam("product_id") int productId,
                                                                           HttpServletRequest request
     ){
+        String cookie =  request.getHeader("cookie");
+        String token =  request.getHeader("token");
+
+        System.out.println("cookie="+cookie);
+        System.out.println("token="+token);
+
         Map<String,Object> data = new HashMap<>();
         data.put("code",0);
         data.put("data",useFeignProductService.save(userId,productId));
@@ -56,7 +62,7 @@ public class OrderController {
     }
 
     private Object saveOrFail(int userId,int productId, HttpServletRequest request ){
-        //监控报警
+        //监控报警 它在微服务中是必须的
         String saveOrderKey ="save-order";
         String sendValue = redisTemplate.opsForValue().get(saveOrderKey);
 

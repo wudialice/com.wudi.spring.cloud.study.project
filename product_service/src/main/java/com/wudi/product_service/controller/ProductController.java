@@ -37,11 +37,6 @@ public class ProductController {
      */
     @RequestMapping("/find")
     public Object findById(@RequestParam("id") int id){
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Product product = productService.findById(id);
       Product result = new Product();
       BeanUtils.copyProperties(product,result);
