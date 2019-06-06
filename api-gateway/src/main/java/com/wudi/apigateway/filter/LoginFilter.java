@@ -48,10 +48,10 @@ public class LoginFilter extends ZuulFilter {
         System.out.println(url);
         System.out.println(request.getRequestURI());
 
-        if ("/apigateway/order/api/v1/order/saveF".equalsIgnoreCase(url)){
+/*        if ("/apigateway/order/api/v1/order/saveF".equalsIgnoreCase(url)){
            //会被 run方法拦截
             return true;
-        }
+        }*/
         return false;
     }
 

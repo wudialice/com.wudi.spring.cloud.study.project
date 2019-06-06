@@ -5,6 +5,8 @@ import com.wudi.order_service.domain.ProductOrder;
 import com.wudi.order_service.feign.ProductClient;
 import com.wudi.order_service.service.ProductOrderService;
 import com.wudi.order_service.utils.JsonUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,15 @@ import java.util.UUID;
 @Service(value = "useFeignProductService")
 public class UseFeignProductServiceImpl implements ProductOrderService {
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
    private ProductClient productClient;
 
     @Override
     public ProductOrder save(int userId, int productId) {
+        logger.info("save order by id");
+
         String response =  productClient.findById(productId);
 
         JsonNode jsonNode = JsonUtil.str2JsonNode(response);

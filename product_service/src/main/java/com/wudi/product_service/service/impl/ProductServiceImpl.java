@@ -2,12 +2,15 @@ package com.wudi.product_service.service.impl;
 
 import com.wudi.product_service.domain.Product;
 import com.wudi.product_service.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
 public class ProductServiceImpl implements ProductService {
     private static Map<Integer,Product> daoMap = new HashMap<>();
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
 
     static {
@@ -44,6 +47,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(int id) {
+        logger.info("find by id");
         return daoMap.get(id);
     }
 }
