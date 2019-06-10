@@ -57,11 +57,13 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--链路追踪-->
+        <!--结合zipkin使用，zipkin可视化平台  访问路径 http://localhost:9411/zipkin/ -->
+        <!--链路追踪 这个依赖包含sleuth 和 zipkin-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
+
         <!--spring boot整合Redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
