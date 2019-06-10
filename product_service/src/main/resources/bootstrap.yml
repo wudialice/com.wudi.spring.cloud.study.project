@@ -1,0 +1,28 @@
+#server:
+#  port: 8771
+#
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: product-service
+
+    #指定去哪个配置中心读取
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        #开区自动发现
+        enabled: true
+      profile: test
+      #用分支区分环境，而不用profile后缀更好
+      label: master
+  #zipkin服务所在地址
+#  zipkin:
+#    base-url: http://localhost:9411/
+#  #配置采样百分比 开发环境设置为1 生产环境设计值要小
+#  sleuth:
+#    sampler:
+#      probability: 1
