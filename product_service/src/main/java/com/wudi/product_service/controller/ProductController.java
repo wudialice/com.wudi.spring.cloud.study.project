@@ -5,18 +5,25 @@ import com.wudi.product_service.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.TimeUnit;
-
+/**
+ * 动态的刷新配置 推送配置到客户端
+ *  http://localhost:8773/actuator/bus-refresh
+ */
+@RefreshScope
 @RestController
 @RequestMapping("/api/vi/product")
 public class ProductController {
 
     @Value("${server.port}")
     private String port;
+
+    @Value("${env}")
+    private String env;
 
     @Autowired
     private ProductService productService;
@@ -40,7 +47,7 @@ public class ProductController {
         Product product = productService.findById(id);
       Product result = new Product();
       BeanUtils.copyProperties(product,result);
-      result.setName( result.getName() +"data from port="+port);
+      result.setName( result.getName() +"data from port="+port +" env="+ env);
       return result;
     }
 }

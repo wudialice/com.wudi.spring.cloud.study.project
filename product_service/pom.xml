@@ -20,6 +20,15 @@
     </properties>
 
     <dependencies>
+        <!-- 推送 bus总线要用到它 spring boot 监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
         <!--配置中心的客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
