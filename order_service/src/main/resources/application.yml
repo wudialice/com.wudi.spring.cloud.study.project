@@ -13,7 +13,7 @@ spring:
     host: 127.0.01
     port: 6379
     timeout: 2000
-  #zipkin服务所在地址
+  #链路追踪zipkin服务所在地址 默认地址
   zipkin:
     base-url: http://localhost:9411/
   #配置采样百分比 开发环境设置为1 生产环境设计值要小
@@ -48,6 +48,8 @@ feign:
 #        timeout:
 #          enabled: false
 
+
+#仪表盘  监控地址 http://localhost:8781/hystrix
 #超时配置4秒，hystrix默认超时是1秒
 hystrix:
   command:
