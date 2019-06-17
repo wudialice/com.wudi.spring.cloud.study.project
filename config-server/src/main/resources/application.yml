@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wudialice/wudi.study.spring.cloud.config.git
+          username: alice.wudi95@qq.com
+          password: Alice1995//
+
+server:
+  port: 9100
+
+#×¢²áµ½×¢²áÖÐÐÄ
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
