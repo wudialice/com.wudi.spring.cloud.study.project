@@ -8,6 +8,8 @@ spring:
           uri: https://github.com/wudialice/wudi.study.spring.cloud.config.git
           username: alice.wudi95@qq.com
           password: Alice1995//
+          timeout: 5
+          default-label: master
 
 server:
   port: 9100
