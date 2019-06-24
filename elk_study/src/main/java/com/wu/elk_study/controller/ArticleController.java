@@ -18,6 +18,10 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
+    /**
+     *新增或者是修改
+     * @return
+     */
     @GetMapping("save")
     public  Object save(){
         Article  article = new Article();
@@ -32,6 +36,11 @@ public class ArticleController {
     }
 
 
+    /**
+     * query 模糊查询
+     * @param title
+     * @return
+     */
     @GetMapping("get")
     public  Object get(String title){
         QueryBuilder queryBuilder = QueryBuilders.matchQuery("title", title);
