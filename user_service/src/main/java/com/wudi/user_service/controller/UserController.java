@@ -1,8 +1,7 @@
 package com.wudi.user_service.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.wudi.user_service.UserVo;
+import com.wudi.user_service.vo.UserVo;
 import com.wudi.user_service.auth.Auth;
 import com.wudi.user_service.common.Constants;
 import com.wudi.user_service.common.Result;
@@ -10,7 +9,6 @@ import com.wudi.user_service.common.ResultCode;
 import com.wudi.user_service.entity.BaseUser;
 import com.wudi.user_service.service.BaseUserService;
 import com.wudi.user_service.util.RandomCodeUtil;
-import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

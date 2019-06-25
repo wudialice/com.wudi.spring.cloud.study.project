@@ -1,4 +1,4 @@
-package com.wudi.user_service;
+package com.wudi.user_service.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wudi.user_service.entity.BaseUser;
