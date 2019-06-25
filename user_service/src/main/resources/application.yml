@@ -1,0 +1,79 @@
+server:
+  port: 8791
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: user-service
+  redis:
+    database: 0
+    host: 127.0.01
+    port: 6379
+    timeout: 2000
+  #链路追踪zipkin服务所在地址 默认地址
+  zipkin:
+    base-url: http://localhost:9411/
+  #配置采样百分比 开发环境设置为1 生产环境设计值要小
+  sleuth:
+    sampler:
+      probability: 1
+  #如果不使用默认的数据源 （com.zaxxer.hikari.HikariDataSource）
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #可以不用配置，自动识别
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong
+    username: root
+    password: 123456
+
+  #自定义Ribbon负载均衡策略 IRule下的之类
+#如果各个机器的配置一样，则不建议修改策略，用默认的负载均衡策略就可以了（推荐）
+#如果各个机器的配置不一样，可以修改负载均衡策略为 WeightedResponseTimeRule 权重策略
+#要负载服务名称
+#product-service:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+#设置超时时间
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 1000
+  #Feign默认是不开启Hystrix降级(feign里面自动引入了hystrix)
+  hystrix:
+    enabled: true
+
+#hystrix超时禁用
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: false
+
+
+#仪表盘  监控地址 http://localhost:8781/hystrix
+#超时配置4秒，hystrix默认超时是1秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+
+#暴露全部的监控信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.wudi.user_service.entity
