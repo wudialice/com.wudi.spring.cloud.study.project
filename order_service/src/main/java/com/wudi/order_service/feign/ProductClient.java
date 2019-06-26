@@ -5,6 +5,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * 调用客户端接口，fallback调用失败的降级类ProductClientFallback
+ */
 @FeignClient(name = "product-service",fallback = ProductClientFallback.class)
 public interface ProductClient {
     @GetMapping("/api/vi/product/find")

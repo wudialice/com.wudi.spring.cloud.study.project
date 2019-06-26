@@ -9,6 +9,8 @@ import com.wudi.user_service.common.ResultCode;
 import com.wudi.user_service.entity.BaseUser;
 import com.wudi.user_service.service.BaseUserService;
 import com.wudi.user_service.util.RandomCodeUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -19,6 +21,9 @@ import javax.validation.constraints.NotNull;
 @RestController
 @RequestMapping("api/user")
 public class UserController {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
 
     @Autowired
     private BaseUserService baseUserService;
@@ -37,6 +42,8 @@ public class UserController {
      */
     @RequestMapping("/login")
     public Result doLogin(String phone, @NotNull String code){
+
+        logger.info("try to login");
         // step1 check code
         if (!code.equals("1234")){
             return Result.buildFailed(ResultCode.VALIDATE_CODE_ERROR);
@@ -58,6 +65,7 @@ public class UserController {
 
         //step4讲token保存到缓存 TimeUnit
         redisTemplate.opsForHash().put(Constants.BASE_USER_LOGIN_MAP,userVo.getToken(),JSONObject.toJSONString(userVo));
+        logger.info("user login success");
         // step5  返回用户信息
         return Result.buildSuccess(userVo);
     }

@@ -67,6 +67,7 @@ public class OrderController {
         String sendValue = redisTemplate.opsForValue().get(saveOrderKey);
 
         /**
+         * 监控报警——>短信通知的方式
          * 主线程直接返回（发送短信http请求耗费时间，在主线程里会阻塞一定时间）,所以一下通过子线程处理
          * new Thread子线程去发送短信给用户
          */
