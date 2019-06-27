@@ -45,9 +45,10 @@ public class OrderController {
     }
 
     @RequestMapping("/saveF")
-    @HystrixCommand(fallbackMethod = "saveOrFail")    public Object saveF(@RequestParam("user_id") int userId,
-                                                                          @RequestParam("product_id") int productId,
-                                                                          HttpServletRequest request
+    @HystrixCommand(fallbackMethod = "saveOrFail")
+    public Object saveF(@RequestParam("user_id") int userId,
+                        @RequestParam("product_id") int productId,
+                        HttpServletRequest request
     ){
         String cookie =  request.getHeader("cookie");
         String token =  request.getHeader("token");
